@@ -10,12 +10,33 @@ We recommend you use the [Tor client or Tor Browser Bundle.](https://www.torproj
 
 
 ## Getting Started
-go-packetflagon currently requires a config file passed with the -conf argument defining the location of the URL database, a listen port etc in order to start;
+go-packetflagon can utilise a config file passed with the -conf argument defining the location of the URL database, a listen port etc in order to start, defaults shown below;
 
 ```javascript
 {
-        "dbpath":"/tmp/pacs.db",
+        "dbpath":"./pacs.db",
         "listenport": 8080,
         "debug":true,
         "tls_enabled":false
-}```
+}
+
+### Create a PAC File
+
+Visit http://localhost:8080/create/ in your browser.
+
+Choose a friendly name for your PAC, a description and a password (for sync/restore functionality), a comma (,) separated list of URLs to send to the local proxy and select if you want to sync this PAC file with the PacketFlagon API.
+
+Click Create
+
+
+### Configure your Browser
+
+[Configure Chrome](https://packetflagon.is/how-to/configure-chrome/)
+[Configure Firefox](https://packetflagon.is/how-to/configure-firefox/)
+[Configure Safari](https://packetflagon.is/how-to/configure-safari/)
+[Configure IE](https://packetflagon.is/how-to/configure-internet-explorer/)
+
+### Configure a Local Proxy
+[Create a Local Tor Proxy](https://packetflagon.is/how-to/create-tor-proxy/)
+[Create a Local SOCKS5 Proxy with SSH](https://packetflagon.is/how-to/create-socks5-proxy/)
+

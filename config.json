@@ -1,0 +1,6 @@
+{
+        "dbpath":"./pacs.db",
+        "listenport": 8080,
+        "debug":true,
+        "tls_enabled":false
+}
