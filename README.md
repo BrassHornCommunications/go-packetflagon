@@ -18,7 +18,8 @@ go-packetflagon can utilise a config file passed with the -conf argument definin
         "listenport": 8080,
         "debug":true,
         "tls_enabled":false
-}```
+}
+```
 
 ### Create a PAC File
 
