@@ -26,9 +26,18 @@ type TemplateConf struct {
 	FQDN       string
 	ListenPort int64
 	Success    bool
-	URLs       []string
+	/*URLs       []string
 	PACName    string
-	PACDesc    string
+	PACDesc    string*/
+	PAC PAC
+}
+
+type PAC struct {
+	ID          string   `json:"id"`
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
+	Password    string   `json:"password"`
+	URLs        []string `json:"urls"`
 }
 
 func main() {
@@ -52,7 +61,7 @@ func main() {
 	log.Println("Using config: " + *configuration)
 	log.Println("DB Path is: " + conf.DbPath)
 
-	//We need a DB for holding interactions
+	//We need a DB for holding PACs
 	db, err := bolt.Open(conf.DbPath, 0600, nil)
 	if err != nil {
 		log.Fatal(err)
@@ -71,11 +80,10 @@ func main() {
 	})
 
 	//Set webpage elements
-	//http.HandleFunc("/", PFWebIndex)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { PFWebIndex(w, r, tmplConf) })
-	//http.HandleFunc("/about/", PFWebAbout)
 	http.HandleFunc("/about/", func(w http.ResponseWriter, r *http.Request) { PFWebAbout(w, r, tmplConf) })
 	http.HandleFunc("/create/", func(w http.ResponseWriter, r *http.Request) { PFWebCreate(w, r, db, tmplConf) })
+	http.HandleFunc("/view/", func(w http.ResponseWriter, r *http.Request) { PFWebView(w, r, db, tmplConf) })
 	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("assets/css/"))))
 	http.Handle("/font/", http.StripPrefix("/font/", http.FileServer(http.Dir("assets/font/"))))
 
